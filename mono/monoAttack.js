@@ -31,9 +31,14 @@ const attack = (plainTextToLearn, cipheredTextToLearn, cipheredText) => {
     result += alphabet.charAt(index);
   }
 
+  //replace the undefined chars with "?"
+  const ReplacedKey = key.map((item) => {
+    if (!item) item = "?";
+    return item;
+  });
   //console.log(key.join(", "));
   console.log(result);
-  // fs.appendFileSync("attackOutput.txt", `key:${key}\n`);
+  fs.appendFileSync("attackOutput.txt", `key:${key}\n`);
   fs.appendFileSync("attackOutput.txt", `decrypted:${result}\n`);
   return result;
 };

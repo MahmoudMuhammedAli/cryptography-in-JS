@@ -66,3 +66,5 @@ function getCommandLine() {
 var exec = require("child_process").exec;
 
 exec(getCommandLine() + " " + "output.txt");
+
+module.exports = { affineDecrypt, affineEncrypt };

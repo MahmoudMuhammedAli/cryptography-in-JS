@@ -1,1 +1,2 @@
+key:s,m,p,n,r,b,o,x,l,c,f,y,d,a,g,j,i,e,k,u,v,t,h,q,w,z
 decrypted:attack him now
