@@ -1,2 +1,1 @@
-Correct, but the two layers share the same sprite, how can we switch back to the original mapillary feature layer, since we already modified the colors for rapid_mapillary_feature
-If we use one sprite, we might want to switch back and forth for the colors. The mapillary_features have different colors for each objects, so we might want to keep track of that
+please work

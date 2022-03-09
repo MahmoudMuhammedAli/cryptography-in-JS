@@ -58,9 +58,13 @@ console.log("ciphered:", encrypt(plainText, key));
 console.log("decrypted:", decrypt(cipherText, key));
 
 fs.writeFileSync("output.txt", "");
-fs.appendFileSync("output.txt", `plainText:${plainText}\n`);
-fs.appendFileSync("output.txt", `encrypted Result:${encrypt(plainText)}\n`);
+fs.appendFileSync("output.txt", `plainText:${plainText}\n\n\n\n\n\n`);
+fs.appendFileSync("output.txt", `encrypted Result:${encrypt(plainText)}\n\n\n\n\n`);
 fs.appendFileSync(
   "output.txt",
   `decrypted Result:${decrypt(encrypt(plainText))}\n`
 );
+
+
+var exec = require("child_process").exec;
+exec("start output.txt");

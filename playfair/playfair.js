@@ -1,5 +1,4 @@
 const fs = require("fs");
-var exec = require("child_process").exec;
 
 const plainText = fs.readFileSync("input.txt").toString();
 const key = fs.readFileSync("key.txt").toString();
@@ -139,17 +138,5 @@ fs.appendFileSync(
   `decrypted Result:${decrypt(encrypt(plainText))}\n`
 );
 
-function getCommandLine() {
-  switch (process.platform) {
-    case "darwin":
-      return "open";
-    case "win32":
-      return "start";
-    case "win64":
-      return "start";
-    default:
-      return "xdg-open";
-  }
-}
-
-exec(getCommandLine() + " " + "output.txt");
+var exec = require("child_process").exec;
+exec("start output.txt");
