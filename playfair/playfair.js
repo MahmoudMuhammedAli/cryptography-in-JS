@@ -133,7 +133,7 @@ function decrypt(input) {
 setKey(key);
 fs.writeFileSync("output.txt", "");
 fs.appendFileSync("output.txt", `plainText:${plainText}\n`);
-fs.appendFileSync("output.txt", `decrypted Result:${encrypt(plainText)}\n`);
+fs.appendFileSync("output.txt", `encrypted Result:${encrypt(plainText)}\n`);
 fs.appendFileSync(
   "output.txt",
   `decrypted Result:${decrypt(encrypt(plainText))}\n`

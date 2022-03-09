@@ -1,0 +1,6 @@
+plainText:Correct, but the two layers share the same sprite, how can we switch back to the original mapillary feature layer, since we already modified the colors for rapid_mapillary_feature
+If we use one sprite, we might want to switch back and forth for the colors. The mapillary_features have different colors for each objects, so we might want to keep track of that
+encrypted Result:Cmqqfds, nts sbf swm juyfqr rbuqf sbf rukf roqcsf, bmw dul wf rwcsdb nudh sm sbf mqcacluj kuocjjuqy ifustqf juyfq, rcldf wf ujqfuey kmecicfe sbf dmjmqr imq quoce_kuocjjuqy_ifustqf
+Ii wf trf mlf roqcsf, wf kcabs wuls sm rwcsdb nudh ule imqsb imq sbf dmjmqr. Tbf kuocjjuqy_ifustqfr buvf eciifqfls dmjmqr imq fudb mngfdsr, rm wf kcabs wuls sm hffo squdh mi sbus
+decrypted Result:Correct, but the two layers share the same sprite, how can we switch back to the original mapillary feature layer, since we already modified the colors for rapid_mapillary_feature
+If we use one sprite, we might want to switch back and forth for the colors. The mapillary_features have different colors for each objects, so we might want to keep track of that
