@@ -1,22 +1,18 @@
+const fs = require("fs");
+var exec = require("child_process").exec;
+
+const plainText = fs.readFileSync("input.txt").toString();
+const key = fs.readFileSync("key.txt").toString();
+
 let matrix = [];
 function setKey(key) {
-  if (key) {
-    // create matrix from key
-    const alphabet = ["abcdefghiklmnopqrstuvwxyz"];
-    const sanitizedKey = key.toLowerCase().replace("j", "i").replace(" ", "");
-    const keyMatrix = [...new Set(`${sanitizedKey}${alphabet}`)];
-    matrix = [];
-    for (let i = 0; i < keyMatrix.length; i += 5) {
-      matrix.push(keyMatrix.slice(i, i + 5));
-    }
-  } else {
-    matrix = [
-      ["a", "b", "c", "d", "e"],
-      ["f", "g", "h", "i", "k"],
-      ["l", "m", "n", "o", "p"],
-      ["q", "r", "s", "t", "u"],
-      ["v", "w", "x", "y", "z"],
-    ];
+  if (!key) console.error("error: no key provided");
+  const alphabet = ["abcdefghiklmnopqrstuvwxyz"];
+  const sanitizedKey = key.toLowerCase().replace("j", "i").replace(" ", "");
+  const keyMatrix = [...new Set(`${sanitizedKey}${alphabet}`)];
+  matrix = [];
+  for (let i = 0; i < keyMatrix.length; i += 5) {
+    matrix.push(keyMatrix.slice(i, i + 5));
   }
 }
 
@@ -40,6 +36,7 @@ function splitIntoCouples(input, decrypt) {
     } else {
       couples.push(currentCouple);
     }
+    console.log(currentCouple);
   }
 
   // find row and column for each letter in couple
@@ -132,8 +129,27 @@ function decrypt(input) {
   return process(input, true);
 }
 
+//TESTS and file stuff
+setKey(key);
+fs.writeFileSync("output.txt", "");
+fs.appendFileSync("output.txt", `plainText:${plainText}\n`);
+fs.appendFileSync("output.txt", `decrypted Result:${encrypt(plainText)}\n`);
+fs.appendFileSync(
+  "output.txt",
+  `decrypted Result:${decrypt(encrypt(plainText))}\n`
+);
 
-//TESTS:
-setKey("abdelghany");
-console.log(encryptRefactored("document"));
-console.log(decrypt("lkgzsycr"));
+function getCommandLine() {
+  switch (process.platform) {
+    case "darwin":
+      return "open";
+    case "win32":
+      return "start";
+    case "win64":
+      return "start";
+    default:
+      return "xdg-open";
+  }
+}
+
+exec(getCommandLine() + " " + "output.txt");

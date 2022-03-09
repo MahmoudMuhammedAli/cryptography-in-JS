@@ -40,9 +40,6 @@ function affineDecrypt(str, a, b) {
   return result;
 }
 
-console.log(affineEncrypt("you have to solve this question", 5, 7));
-console.log(affineDecrypt("xzd qhib yz tzkib yqvt jdbtyvzu", 5, 7));
-
 fs.writeFileSync("output.txt", "");
 fs.appendFileSync("output.txt", `plainText:${plainText}\n`);
 fs.appendFileSync(
