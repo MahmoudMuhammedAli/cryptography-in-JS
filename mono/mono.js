@@ -18,10 +18,10 @@ const process = (input, key, decrypt) => {
   for (let char = 0; char < input.length; char++) {
     const element = input[char];
     if (!decrypt) {
-      const index = alphabetArray.indexOf(element);
+      const index = alphabetArray.indexOf(element.toLowerCase());
       if (index !== -1) {
         //handle uppercase characters
-        if (element === element.toUpperCase()) {
+        if (element.charCodeAt(0) >= 65 && element.charCodeAt(0) <= 90) {
           result += cleanKey[index].toUpperCase();
         }
         //handle lowercase characters
@@ -32,14 +32,14 @@ const process = (input, key, decrypt) => {
         result += element;
       }
     } else {
-      const index = cleanKey.indexOf(element);
+      const index = cleanKey.indexOf(element.toLowerCase());
       if (index !== -1) {
         //handle uppercase characters
         if (element === element.toUpperCase()) {
-          result += [index].toUpperCase();
+          result += alphabetArray[index].toUpperCase();
         }
         //handle lowercase characters
-        else{
+        else {
           result += alphabetArray[index];
         }
       } else {
@@ -72,14 +72,14 @@ console.log("ciphered:", encrypt(plainText, key));
 console.log("decrypted:", decrypt(cipherText, key));
 
 fs.writeFileSync("output.txt", "");
-fs.appendFileSync("output.txt", `plainText:${plainText}\n\n\n\n\n\n`);
+fs.appendFileSync("output.txt", `plainText:${plainText}\n`);
 fs.appendFileSync(
   "output.txt",
-  `encrypted Result:${encrypt(plainText)}\n\n\n\n\n`
+  `encrypted Result:${encrypt(plainText)}\n`
 );
 fs.appendFileSync(
   "output.txt",
-  `decrypted Result:${decrypt(encrypt(plainText))}\n`
+  `decrypted Result:${decrypt(encrypt(plainText))}\nkey:${key}\n`
 );
 
 var exec = require("child_process").exec;

@@ -14,8 +14,8 @@ key.length = 26;
 const attack = (plainTextToLearn, cipheredTextToLearn, cipheredText) => {
   let result = "";
   for (let i = 0; i < plainTextToLearn.length; i++) {
-    const letter = plainTextToLearn[i];
-    const opposingLetter = cipheredTextToLearn[i];
+    const letter = plainTextToLearn[i].toLowerCase();
+    const opposingLetter = cipheredTextToLearn[i].toLowerCase();
     const index = alphabet.indexOf(letter);
     const opposingIndex = alphabet.indexOf(opposingLetter);
     key[index] = opposingLetter;
@@ -27,8 +27,16 @@ const attack = (plainTextToLearn, cipheredTextToLearn, cipheredText) => {
       result += " ";
       continue;
     }
-    let index = key.indexOf(cipheredText[i]);
-    result += alphabet.charAt(index);
+    let index = key.indexOf(cipheredText[i].toLowerCase());
+    //handle uppercase characters
+    if (
+      cipheredText[i].charCodeAt(0) >= 65 &&
+      cipheredText[i].charCodeAt(0) <= 90
+    ) {
+      result += alphabet.charAt(index).toUpperCase();
+    } else {
+      result += alphabet.charAt(index);
+    }
   }
 
   //replace the undefined chars with "?"
