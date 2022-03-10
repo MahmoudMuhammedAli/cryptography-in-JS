@@ -1,12 +1,12 @@
-plainText:please work
+plainText:Please Work
 
 
 
 
 
-encrypted Result:ojfurf wmqh
+encrypted Result:Pjfurf Wmqh
 
 
 
 
-decrypted Result:please work
+decrypted Result:Please Work
