@@ -61,7 +61,7 @@ function splitIntoCouples(input, decrypt) {
 }
 function process(input, decrypt) {
   if (!matrix) return "First set the key!";
-  if (input && decrypt && input.length % 2 !== 0) return "Invalid ciphertext";
+  if (input && decrypt && input.length % 2 !== 0) return "error: invalid cipherText.  cipherTexts must be an even number";
   const coordinates = splitIntoCouples(input, decrypt);
 
   // set modifiers to respond appropriately based on decrypt switch
