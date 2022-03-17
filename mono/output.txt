@@ -1,4 +1,3 @@
-plainText:PLEASE WORK please work
-encrypted Result:OJFURF WMQH ojfurf wmqh
-decrypted Result:PLEASE WORK please work
-key:zyxwvutsrqponmlkjihgfedcba
+plainText:Please Work
+encrypted Result:Ojfurf Wmqh
+decrypted Result:Please Work

@@ -35,7 +35,6 @@ function splitIntoCouples(input, decrypt) {
     } else {
       couples.push(currentCouple);
     }
-    console.log(currentCouple);
   }
 
   // find row and column for each letter in couple
@@ -61,7 +60,8 @@ function splitIntoCouples(input, decrypt) {
 }
 function process(input, decrypt) {
   if (!matrix) return "First set the key!";
-  if (input && decrypt && input.length % 2 !== 0) return "error: invalid cipherText.  cipherTexts must be an even number";
+  if (input && decrypt && input.length % 2 !== 0)
+    return "error: invalid cipherText.  cipherTexts must be an even number";
   const coordinates = splitIntoCouples(input, decrypt);
 
   // set modifiers to respond appropriately based on decrypt switch
@@ -87,6 +87,8 @@ function process(input, decrypt) {
         loc[1][1] === wall
           ? [loc[1][0], wall + phase]
           : [loc[1][0], loc[1][1] + modifier];
+
+      console.table(modifiedLoc);
       return processedLocs.push(modifiedLoc);
     }
 
@@ -130,6 +132,9 @@ function decrypt(input) {
 
 //TESTS and file stuff
 setKey(key);
+console.log("Example on 2 letters on the same row");
+console.log(encrypt("abd"));
+
 fs.writeFileSync("output.txt", "");
 fs.appendFileSync("output.txt", `plainText:${plainText}\n`);
 fs.appendFileSync("output.txt", `encrypted Result:${encrypt(plainText)}\n`);
