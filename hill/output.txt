@@ -1,0 +1,3 @@
+plainText:mahmoud ali
+encrypted Result:upnsifbsbw
+decrypted Result:mahmoudali
