@@ -1,0 +1,3 @@
+plainText:wearediscoveredsaveyourself
+encrypted Result:zicvtwqngrzgvtwavzhcqyglmgj
+decrypted Result:wearediscoveredsaveyourself
