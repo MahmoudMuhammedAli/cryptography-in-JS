@@ -69,7 +69,7 @@ function Decrypt(ciphertext, keyword) {
   let colLength = ciphertext.length / keyLength;
   for (i = 0; i < keyLength; i++)
     cols[i] = ciphertext.substr(i * colLength, colLength);
-  // now we rearrange the columns so that they are in their unscrambled state
+  // then we rearrange the columns so that they are in their unscrambled state
   let newcols = new Array(keyLength);
   j = 0;
   i = 0;
@@ -108,7 +108,7 @@ function handleDecrypt() {
   getById("p").value = Decrypt(ciphertext, key);
 }
 
-//! USE FOR TESTING. I recommend you run the html file in your browser for a simple GUI to test with.
+//! USE FOR TESTING WITH FILES. I recommend you run the html file in your browser for a simple GUI to test with.
 // // DRIVER FUNCTION
 // function main() {
 //   const plainText = fs.readFileSync("plainText.txt").toString();
