@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Row Transposition Cipher</title>
+  </head>
+  <body>
+    <p>
+      Plaintext<br />
+      <textarea id="p" name="p" rows="4" cols="50">attack at dawn</textarea>
+    </p>
+    <p>
+      keyword =
+      <input id="key" name="key" size="10" value="abdelghany" type="text" /> pad
+      character = <input id="pc" name="pc" size="1" value="x" type="text" />
+    </p>
+    <p>
+      <input
+        type="button"
+        name="btnEn"
+        value="v Encrypt v"
+        onclick="handleEncrypt()"
+      />
+      <input
+        type="button"
+        name="btnDe"
+        value="^ Decrypt ^"
+        onclick="handleDecrypt()"
+      />
+    </p>
+    <p>
+      Ciphertext<br />
+      <textarea id="c" name="c" rows="4" cols="50"></textarea>
+    </p>
+    <script src="RowTransposition.js"></script>
+  </body>
+</html>
