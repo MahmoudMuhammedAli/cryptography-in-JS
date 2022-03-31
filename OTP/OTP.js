@@ -96,11 +96,11 @@ function decrypt(message, key) {
   return encryptedMessage;
 }
 
-// DRIVER FUNCTION
-function main() {
-  const plainText = fs.readFileSync("plainText.txt").toString();
-  const key = fs.readFileSync("key.txt").toString();
-  const cipherText = fs.readFileSync("cipherText.txt").toString();
+// DRIVER FUNCTION - IIFE
+(() => {
+  const plainText = fs.readFileSync("plainText.txt").toString().toUpperCase();
+  const key = fs.readFileSync("key.txt").toString().toUpperCase();
+  const cipherText = fs.readFileSync("cipherText.txt").toString().toUpperCase();
 
   const encrypted = encrypt(plainText, key);
   const decrypted = decrypt(cipherText, key);
@@ -108,6 +108,4 @@ function main() {
   fs.writeFileSync("output.txt", `${encrypted}\n${decrypted}`);
   // open the file in the default txt viewer  (notepad)
   exec("start output.txt");
-}
-
-main();
+})();

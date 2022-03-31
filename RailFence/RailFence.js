@@ -1,13 +1,33 @@
-function Encrypt() {
-  plaintext = document
-    .getElementById("p")
-    .value.toLowerCase()
-    .replace(/[^a-z]/g, "");
-  if (plaintext.length < 1) {
-    alert("please enter some plaintext");
-    return;
-  }
-  var key = parseInt(document.getElementById("key").value);
+// DRIVER FUNCTION
+(() => {
+  const plainText = fs.readFileSync("plainText.txt").toString().toUpperCase();
+  const key = fs.readFileSync("key.txt").toString().toUpperCase();
+  const cipherText = fs.readFileSync("cipherText.txt").toString().toUpperCase();
+
+  const encrypted = encrypt(plainText, key);
+  const decrypted = decrypt(cipherText, key);
+
+  fs.writeFileSync("output.txt", `${encrypted}\n${decrypted}`);
+  // open the file in the default txt viewer  (notepad)
+  exec("start output.txt");
+})();
+
+// HELPER FUNCTIONS
+const clean = (text) => {
+  // replace anything not from a=>z  with an empty string
+  return text.toLowerCase().replace(/[^a-z]/g, "");
+};
+const isEmpty = (text) => {
+  return text.length < 1;
+};
+const toInt = (text) => {
+  return parseInt(text);
+};
+// MAIN  FUNCTIONS
+function encrypt(plaintext, key) {
+  plaintext = clean(plaintext);
+  if (isEmpty(plaintext)) return "";
+  key = toInt(key);
   if (key > Math.floor(2 * (plaintext.length - 1))) {
     alert("key is too large for the plaintext length.");
     return;
@@ -28,7 +48,7 @@ function Encrypt() {
   document.getElementById("c").value = ciphertext;
 }
 
-function Decrypt(f) {
+function decrypt(f) {
   ciphertext = document
     .getElementById("c")
     .value.toLowerCase()
@@ -37,7 +57,7 @@ function Decrypt(f) {
     alert("please enter some ciphertext (letters only)");
     return;
   }
-  var key = parseInt(document.getElementById("key").value);
+  let key = parseInt(document.getElementById("key").value);
   if (key > Math.floor(2 * (ciphertext.length - 1))) {
     alert("please enter 1 - 22.");
     return;
@@ -58,61 +78,3 @@ function Decrypt(f) {
     pt[i] = ciphertext.charAt(k++);
   document.getElementById("p").value = pt.join("");
 }
-
-// second implementation for railfence
-
-(function (root, factory) {
-  if (typeof define === "function" && define.amd) {
-    define([], factory);
-  } else if (typeof module === "object" && module.exports) {
-    module.exports = factory();
-  } else {
-    root.zigzag = factory();
-  }
-})(this, function () {
-  function makeMap(len, n) {
-    var i,
-      pip,
-      period = 2 * (n - 1);
-    var rows = Array.apply(null, Array(n)).map(function () {
-      return [];
-    }); // array of arrays
-    for (i = 0; i < len; i++) {
-      pip = i % period;
-      r = pip < n - 1 ? pip : period - pip;
-      rows[r].push(i);
-    }
-    return Array.concat.apply(null, rows);
-  }
-
-  function decrypt(text, n) {
-    var i,
-      len = text.length,
-      mapped = makeMap(len, n),
-      result = "";
-    return text.split("").reduce(function (p, c, i, a) {
-      return p + a[mapped.indexOf(i)];
-    }, "");
-    for (i = 0; i < len; i++) result += text.substr(mapped.indexOf(i), 1);
-    return result;
-  }
-
-  function encrypt(text, n) {
-    var i,
-      len = text.length,
-      mapped = makeMap(len, n),
-      result = "";
-    for (i = 0; i < len; i++) result += text.substr(mapped[i], 1);
-    return result;
-  }
-
-  return {
-    encrypt: encrypt,
-    decrypt: decrypt,
-  };
-});
-
-var src = "mahmoud ali";
-var enc = "mahmoud ali";
-zigzag.decrypt(enc, 4);
-zigzag.encrypt(src, 4);
