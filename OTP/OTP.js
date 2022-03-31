@@ -12,12 +12,12 @@ const fs = require("fs");
 const exec = require("child_process").exec;
 
 // HELPER FUNCTIONS
-const legend = "ABCDEFGHIJKLMNOPQRSTUVWXYZ".split("").map((ch, i) => {
+const ALPHAPET = "ABCDEFGHIJKLMNOPQRSTUVWXYZ".split("").map((ch, i) => {
   return { letter: ch, value: i };
 });
 
 const findKey = (key, param) => {
-  return legend.find((la) => la[param] === key);
+  return ALPHAPET.find((la) => la[param] === key);
 };
 
 const search = (key) => {
@@ -37,7 +37,7 @@ const reverse = (key) => {
 };
 
 const mod = (n) => {
-  const p = legend.length - 1;
+  const p = ALPHAPET.length - 1;
   return n - p * Math.floor(n / p);
 };
 const clean = (text) => {
