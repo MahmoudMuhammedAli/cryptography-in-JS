@@ -13,7 +13,7 @@ const exec = require("child_process").exec;
 // HELPER FUNCTIONS
 const clean = (text) => {
   // replace anything not from a=>z  with an empty string
-  return text.toLowerCase().replace(/[^a-z]/g, "");
+  return text.toLowerCase().replace(/[^ a-z]/g, "");
 };
 const isEmpty = (text) => {
   return text.length < 1;
@@ -100,6 +100,12 @@ function decrypt(cipherText, key) {
 
     `
   );
+  console.log(`
+  plain text:${plainText}\n
+  encrypted: ${encrypted}\n
+  cipher text: ${cipherText}\n
+  decrypted: ${decrypted}
+ `);
   // open the file in the default txt viewer  (notepad)
   exec("start output.txt");
 })();

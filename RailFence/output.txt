@@ -1,10 +1,10 @@
 
-     plain text:be confident in yourself. nobody can make you feel inferior without your permission.
+     plain text:how good was my code? please don't forget to rate it.
 
-     encrypted: beroklryiednusbdaeeiowtomscitoeoymyeniiuursofiylncnoffrtoreinnnfauehpo
+     encrypted: h ca tiodw oestf o twoaydlenot e osmep orertg  dga
 
-     cipher text: bdy. eeio ieie of yck elrohurpso fnnulndaayf erttuesncntireoonmo if i ori.o sb unwym
+     cipher text: h ca tiodw oestf o twoaydlenot e osmep orertg  dga
 
-     decrypted: beconfidentinyourselfnobodycanmakeyoufeelinferiorwithoutyourpermission
+     decrypted: how good was my code please dont forget to rate it
 
     
