@@ -1,6 +1,6 @@
-/* Hello Dr. Abd El-Ghany, and Dr. Mahmoud
+/* Hey Dr. Abd El-Ghany, and Dr. Mahmoud
 
-This is an my first attempt to make my code cleaner and have it easily readable. 
+This is  my attempt to make my code cleaner and have it easily readable. 
 It would be great of you to give me a rating out of 5 and places I can Improve upon. 
 I will try to make use of Helper functions and correct naming of my variables. 
 
