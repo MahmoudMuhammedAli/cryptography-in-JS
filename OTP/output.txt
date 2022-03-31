@@ -1,2 +1,10 @@
-SCBK1GIPLM4CX
-RDBQ4SL4RRF4
+
+     plain text:SECRET MESSAGE
+
+     encrypted: SCBKQGIFLMTCN
+
+     cipher text: SCBKQGIFLMTCN
+
+     decrypted: SECRETMESSAGE
+
+    

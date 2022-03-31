@@ -7,9 +7,10 @@ I will try to make use of Helper functions and correct naming of my variables.
 Thank you in advance.
 
 */
+const fs = require("fs");
+const exec = require("child_process").exec;
 
 // HELPER FUNCTIONS
-
 const clean = (text) => {
   // replace anything not from a=>z  with an empty string
   return text.toLowerCase().replace(/[^a-z]/g, "");
@@ -82,14 +83,23 @@ function decrypt(cipherText, key) {
 
 // DRIVER FUNCTION -IIFE
 (() => {
-  const plainText = fs.readFileSync("plainText.txt").toString().toUpperCase();
-  const key = fs.readFileSync("key.txt").toString().toUpperCase();
-  const cipherText = fs.readFileSync("cipherText.txt").toString().toUpperCase();
+  const plainText = fs.readFileSync("plainText.txt").toString().toLowerCase();
+  const key = fs.readFileSync("key.txt").toString().toLowerCase();
+  const cipherText = fs.readFileSync("cipherText.txt").toString().toLowerCase();
 
   const encrypted = encrypt(plainText, key);
-  const decrypted = decrypt(cipherText, key);
+  const decrypted = decrypt(encrypted, key);
 
-  fs.writeFileSync("output.txt", `${encrypted}\n${decrypted}`);
+  fs.writeFileSync(
+    "output.txt",
+    `
+     plain text:${plainText}\n
+     encrypted: ${encrypted}\n
+     cipher text: ${cipherText}\n
+     decrypted: ${decrypted}
+
+    `
+  );
   // open the file in the default txt viewer  (notepad)
   exec("start output.txt");
 })();

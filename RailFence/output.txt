@@ -1,0 +1,10 @@
+
+     plain text:be confident in yourself. nobody can make you feel inferior without your permission.
+
+     encrypted: beroklryiednusbdaeeiowtomscitoeoymyeniiuursofiylncnoffrtoreinnnfauehpo
+
+     cipher text: bdy. eeio ieie of yck elrohurpso fnnulndaayf erttuesncntireoonmo if i ori.o sb unwym
+
+     decrypted: beconfidentinyourselfnobodycanmakeyoufeelinferiorwithoutyourpermission
+
+    

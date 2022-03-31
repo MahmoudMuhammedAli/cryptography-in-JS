@@ -100,12 +100,20 @@ function decrypt(message, key) {
 (() => {
   const plainText = fs.readFileSync("plainText.txt").toString().toUpperCase();
   const key = fs.readFileSync("key.txt").toString().toUpperCase();
-  const cipherText = fs.readFileSync("cipherText.txt").toString().toUpperCase();
 
   const encrypted = encrypt(plainText, key);
-  const decrypted = decrypt(cipherText, key);
+  const decrypted = decrypt(encrypted, key);
 
-  fs.writeFileSync("output.txt", `${encrypted}\n${decrypted}`);
+  fs.writeFileSync(
+    "output.txt",
+    `
+     plain text:${plainText}\n
+     encrypted: ${encrypted}\n
+     cipher text: ${encrypted}\n
+     decrypted: ${decrypted}
+
+    `
+  );
   // open the file in the default txt viewer  (notepad)
   exec("start output.txt");
 })();
