@@ -15,84 +15,84 @@ const pc_2 = [
 const leftShift = [1, 1, 2, 2, 2, 2, 2, 2, 1, 2, 2, 2, 2, 2, 2, 1];
 
 let binaryNumber = "";
-let LeftKey = "";
-let RightKey = "";
+let leftKey = "";
+let rightKey = "";
 let binaryAfterPC1 = "";
-let temp = "";
+let temp = " ";
 
 // Helper Functions
 
 function bin2hex(s) {
-  let i,
-    l,
-    o = "",
-    n;
-  s += "";
-  for (i = 0, l = s.length; i < l; i += 8) {
-    n = parseInt(s.substring(i, i + 8), 2);
-    o += String.fromCharCode(n);
+  let result = "";
+  let i = 0;
+  if (s.length % 4) s = "0".repeat(4 - (s.length % 4)) + s;
+  while (i < s.length) {
+    result += parseInt(s.substring(i, i + 4), 2).toString(16);
+    i += 4;
   }
-  return o;
+  return result;
 }
+
 function leftShiftKey(numOfShifts) {
+  let result = "";
   leftKey = leftKey.substring(numOfShifts) + leftKey.substring(0, numOfShifts);
   rightKey =
     rightKey.substring(numOfShifts) + rightKey.substring(0, numOfShifts);
   let afterShifting = leftKey + rightKey;
-  let result = "";
   for (let i = 0; i < pc_2.length; i++) {
     result += afterShifting.charAt(pc_2[i] - 1);
   }
   return result;
 }
 
-
-
 // DesKey function
 function DesKey(keyFile) {
   let readKeyFile = fs.readFileSync(keyFile, "utf8");
   let keyString = readKeyFile.split("\n")[0];
-  let hexadecimalNumber;
+  let hexadecimalNumber = "";
   for (let i = 0; i < keyString.length; i++) {
     hexadecimalNumber = parseInt(keyString.charAt(i), 16);
     temp = bin2hex(parseInt(keyString.charAt(i), 16).toString(2));
-    while (temp.length() < 4) temp = "0" + temp;
+    while (temp.length < 4) temp = "0" + temp;
     binaryNumber += temp;
   }
-  for (let i = 0; i < pc_1.length; i++)
+  for (let i = 0; i < pc_1.length; i++) {
     binaryAfterPC1 += binaryNumber.charAt(pc_1[i] - 1);
-  LeftKey = binaryAfterPC1.substring(0, binaryAfterPC1.length() / 2);
-  RightKey = binaryAfterPC1.substring(binaryAfterPC1.length() / 2);
-  let fileDir = process.cwd() + "/16keysFile.txt";
-  let _16keysFile = fs.openSync(fileDir, "w");
-  for (let i = 0; i < 16; i++) {
+  }
+  LeftKey = binaryAfterPC1.substring(0, binaryAfterPC1.length / 2);
+  RightKey = binaryAfterPC1.substring(binaryAfterPC1.length / 2);
+  let fileDir = process.cwd() + "/generatedKeys.txt";
+  let generatedKeysFile = fs.openSync(fileDir, "w");
+  for (let i = 1; i <= 16; i++) {
     fs.writeFileSync(
-      _16keysFile,
-      "KEY[" + (i + 1) + "]\n",
+      generatedKeysFile,
+      "KEY[" + i + "]\n",
       "utf8",
       function (err) {
         if (err) throw err;
       }
     );
     fs.writeFileSync(
-      _16keysFile,
-      "  -->>  " + bin2hex(leftShiftMethod(leftShift[i])) + "\n",
+      generatedKeysFile,
+      bin2hex(leftShiftKey(leftShift[i])) + "\n",
       "utf8",
       function (err) {
         if (err) throw err;
       }
     );
   }
-  fs.closeSync(_16keysFile);
+  fs.closeSync(generatedKeysFile);
 }
 
 // Mock Driver Function
 function main() {
-  let fileDir = process.cwd() + "/keyFile.txt";
-  let keyFile = fs.openSync(fileDir, "w");
-  fs.writeFileSync(keyFile, "133457799bbcdff1", "utf8", function (err) {
+  let file = process.cwd() + "/key.txt";
+  let keyFile = fs.openSync(file, "w");
+  fs.writeFileSync(keyFile, "0f57c907d9e859", "utf8", function (err) {
     if (err) throw err;
   });
   fs.closeSync(keyFile);
-  DesKey(fileDir);
+  DesKey(file);
 }
+
+main();
