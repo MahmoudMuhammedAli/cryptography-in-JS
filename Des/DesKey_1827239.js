@@ -34,7 +34,6 @@ function bin2hex(s) {
   }
   return o;
 }
-// leftShift function
 function leftShiftKey(numOfShifts) {
   leftKey = leftKey.substring(numOfShifts) + leftKey.substring(0, numOfShifts);
   rightKey =
@@ -46,6 +45,8 @@ function leftShiftKey(numOfShifts) {
   }
   return result;
 }
+
+
 
 // DesKey function
 function DesKey(keyFile) {
