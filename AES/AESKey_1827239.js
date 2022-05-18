@@ -1,3 +1,5 @@
+const exec = require("child_process").exec;
+
 const RC = [
   "01000000",
   "02000000",
@@ -7,7 +9,7 @@ const RC = [
   "20000000",
   "40000000",
   "80000000",
-  "1B000000",
+  "1b000000",
   "36000000",
 ];
 const SBox = [
@@ -300,6 +302,7 @@ const SBox = [
     "16",
   ],
 ];
+
 let word = [];
 
 function KeyExpansion(AesInput) {
@@ -319,17 +322,16 @@ function KeyExpansion(AesInput) {
   }
 }
 
-function RotWord(word) {
-  let temp = word.substring(2) + word.substring(0, 2);
-  return SubWord(temp);
+function RotWord(w) {
+  var tmp = w[0];
+  for (var i = 0; i < 3; i++) w[i] = w[i + 1];
+  w[3] = tmp;
+  return w;
 }
 
 function SubWord(word) {
-  let temp = "";
-  for (let i = 0; i < 4; i++) {
-    temp += SBox[parseInt(word.substring(i * 2, i * 2 + 2), 16)];
-  }
-  return temp;
+  for (var i = 0; i < 4; i++) w[i] = SBox[w[i]];
+  return w;
 }
 function toBinaryString(hex) {
   let binary = "";
@@ -351,10 +353,10 @@ function pad(num, size) {
   return s;
 }
 
-function Xor(first, second) {
+function Xor(first = "", second = "") {
   let temp = "";
   for (let i = 0; i < first.length; i++) {
-    temp += first.charAt(i) ^ second.charAt(i);
+    temp += first[i] ^ second.charAt(i);
   }
   return temp;
 }
@@ -362,6 +364,54 @@ function Xor(first, second) {
 (function main() {
   let input = "0f1571c947d9e8590cb7add6af7f6798";
   KeyExpansion(input);
-  console.log(word);
-  for (let i = 0; i < 44; i++) console.log(word[i]);
+  for (let i = 0; i < 44; i++) console.log(`key: ${i} is `, word[i]);
 })();
+
+/* example run
+0f1571c947d9e8590cb7add6af7f6798
+The keys is: 
+key:1 is 0f1571c9
+key:2 is 47d9e859
+key:3 is 0cb7add6
+key:4 is af7f6798
+key:5 is dc9037b0
+key:6 is 9b49dfe9
+key:7 is 97fe723f
+key:8 is 388115a7
+key:9 is d2c96bb7
+key:10 is 4980b45e
+key:11 is de7ec661
+key:12 is e6ffd3c6
+key:13 is c0afdf39
+key:14 is 892f6b67
+key:15 is 5751ad06
+key:16 is b1ae7ec0
+key:17 is 2c5c65f1
+key:18 is a5730e96
+key:19 is f222a390
+key:20 is 438cdd50
+key:21 is 589d36eb
+key:22 is fdee387d
+key:23 is 0fcc9bed
+key:24 is 4c4046bd
+key:25 is 71c74cc2
+key:26 is 8c2974bf
+key:27 is 83e5ef52
+key:28 is cfa5a9ef
+key:29 is 37149348
+key:30 is bb3de7f7
+key:31 is 38d808a5
+key:32 is f77da14a
+key:33 is 48264520
+key:34 is f31ba2d7
+key:35 is cbc3aa72
+key:36 is 3cbe0b38
+key:37 is fd0d42cb
+key:38 is 0e16e01c
+key:39 is c5d54a6e
+key:40 is f96b4156
+key:41 is b48ef352
+key:42 is ba98134e
+key:43 is 7f4d5920
+key:44 is 86261876
+*/
