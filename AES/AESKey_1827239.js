@@ -303,6 +303,7 @@ const SBox = [
 let word = [];
 
 function KeyExpansion(AesInput) {
+  console.log(AesInput);
   let rcCounter = 0,
     X = 0;
   for (let i = 0; i < 4; i++) {
@@ -324,14 +325,11 @@ function RotWord(word) {
 }
 
 function SubWord(word) {
-  let Res = "";
-  let row, col;
-  for (let i = 0; i < word.length - 1; i += 2) {
-    row = parseInt(word.charAt(i), 16);
-    col = parseInt(word.charAt(i + 1), 16);
-    Res += SBox[row][col];
+  let temp = "";
+  for (let i = 0; i < 4; i++) {
+    temp += SBox[parseInt(word.substring(i * 2, i * 2 + 2), 16)];
   }
-  return Res;
+  return temp;
 }
 function toBinaryString(hex) {
   let binary = "";
@@ -354,39 +352,16 @@ function pad(num, size) {
 }
 
 function Xor(first, second) {
-  let hexFirst, hexSecond;
-  let tempFirst,
-    tempSecond,
-    binFirst = "",
-    binSecond = "";
-  let Result = "";
+  let temp = "";
   for (let i = 0; i < first.length; i++) {
-    hexFirst = parseInt(first.charAt(i), 16);
-    hexSecond = parseInt(second.charAt(i), 16);
-
-    tempFirst = toBinaryString(hexFirst);
-    tempSecond = toBinaryString(hexSecond);
-
-    while (tempFirst.length < 4) tempFirst = "0" + tempFirst;
-    while (tempSecond.length < 4) tempSecond = "0" + tempSecond;
-
-    binFirst += tempFirst;
-    binSecond += tempSecond;
+    temp += first.charAt(i) ^ second.charAt(i);
   }
-
-  let tempRes;
-  for (let i = 0; i < binFirst.length / 4; i++) {
-    tempRes =
-      parseInt(binFirst.substring(i * 4, i * 4 + 4), 2) ^
-      parseInt(binSecond.substring(i * 4, i * 4 + 4), 2);
-
-    Result += toHexString(tempRes);
-  }
-  return Result;
+  return temp;
 }
 
 (function main() {
   let input = "0f1571c947d9e8590cb7add6af7f6798";
   KeyExpansion(input);
+  console.log(word);
   for (let i = 0; i < 44; i++) console.log(word[i]);
 })();
